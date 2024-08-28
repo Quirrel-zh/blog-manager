@@ -3,7 +3,7 @@ subtitle: Quirrel's blog
 description: quirrel-Zh的博客
 keywords: 码记栈 小郑 quirrel-Zh quirrel
 author: 小郑
-language: zh
+language: zh-CN
 timezone: 'Asia/Shanghai'
 url: https://www.f2iclo.cn
 permalink: ':year/:month/:day/:title/'
@@ -63,3 +63,16 @@ deploy:
   type: git
   repo: git@47.104.191.8:/home/git/blog.git
   branch: master
+feed:
+  enable: true
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub:
+  content:
+  content_limit: 140
+  content_limit_delim: ' '
+  order_by: -date
+  icon: icon.png
+  autodiscovery: true
+  template:

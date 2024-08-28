@@ -3,37 +3,37 @@ version: 5.1.0
 # Icarus theme variant, can be "default" or "cyberpunk"
 variant: default
 # Path or URL to the website's logo
-logo: /img/logo.svg
+logo: /img/logo.png
 # Page metadata configurations
 head:
     # URL or path to the website's icon
-    favicon: /img/favicon.svg
+    favicon: /img/favicon.png
     # Web application manifests configuration
     # https://developer.mozilla.org/en-US/docs/Web/Manifest
     manifest:
         # Name of the web application (default to the site title)
-        name:
+        name: Quirrel-Zh
         # The displayed name of the web application
         # when there is not enough space to display full name
-        short_name:
+        short_name: Quirrel
         # The start URL of the web application
-        start_url:
+        start_url: https://www.f2iclo.cn/
         # The default theme color for the application
-        theme_color:
+        theme_color: '#fff'
         # A placeholder background color for the application page to display
         # before its stylesheet is loaded
-        background_color:
+        background_color: '#f5f5f5'
         # The preferred display mode for the website
         display: standalone
         # Image files that can serve as application icons for different contexts
         icons:
             -
                 # The path to the image file
-                src: ''
+                src: 'img/favicon.png'
                 # A string containing space-separated image dimensions
-                sizes: ''
+                sizes: '144x144'
                 # A hint as to the media type of the image
-                type:
+                type: image/png
     # Open Graph metadata
     # https://hexo.io/docs/helpers.html#open-graph
     open_graph:
@@ -100,7 +100,7 @@ head:
         # E.g., name=theme-color;content=#123456 => <meta name="theme-color" content="#123456">
         - ''
     # URL or path to the website's RSS atom.xml
-    rss:
+    rss: /atom.xml
 # Page top navigation bar configurations
 navbar:
     # Navigation menu items
@@ -114,7 +114,7 @@ navbar:
     links:
         Download on GitHub:
             icon: fab fa-github
-            url: https://github.com/ppoffice/hexo-theme-icarus
+            url: https://github.com/Quirrel-zh
 # Page footer configurations
 footer:
     # Copyright text
@@ -165,57 +165,58 @@ search:
 # Comment plugin configurations
 # https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Comment/
 comment:
-    type: disqus
-    # Disqus shortname
-    shortname: ''
+    type: utterances
+    repo: Quirrel-zh/blog-manager
+    issue-term: url
+    theme: github-light
 # Donate plugin configurations
 # https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Donation/
-donates:
-    # "Afdian.net" donate button configurations
-    -
-        type: afdian
-        # URL to the "Afdian.net" personal page
-        url: ''
-    # Alipay donate button configurations
-    -
-        type: alipay
-        # Alipay qrcode image URL
-        qrcode: ''
-    # "Buy me a coffee" donate button configurations
-    -
-        type: buymeacoffee
-        # URL to the "Buy me a coffee" page
-        url: ''
-    # Patreon donate button configurations
-    -
-        type: patreon
-        # URL to the Patreon page
-        url: ''
-    # Paypal donate button configurations
-    -
-        type: paypal
-        # Paypal business ID or email address
-        business: ''
-        # Currency code
-        currency_code: USD
-    # Wechat donate button configurations
-    -
-        type: wechat
-        # Wechat qrcode image URL
-        qrcode: ''
+# donates:
+#     # "Afdian.net" donate button configurations
+#     -
+#         type: afdian
+#         # URL to the "Afdian.net" personal page
+#         url: ''
+#     # Alipay donate button configurations
+#     -
+#         type: alipay
+#         # Alipay qrcode image URL
+#         qrcode: ''
+#     # "Buy me a coffee" donate button configurations
+#     -
+#         type: buymeacoffee
+#         # URL to the "Buy me a coffee" page
+#         url: ''
+#     # Patreon donate button configurations
+#     -
+#         type: patreon
+#         # URL to the Patreon page
+#         url: ''
+#     # Paypal donate button configurations
+#     -
+#         type: paypal
+#         # Paypal business ID or email address
+#         business: ''
+#         # Currency code
+#         currency_code: USD
+#     # Wechat donate button configurations
+#     -
+#         type: wechat
+#         # Wechat qrcode image URL
+#         qrcode: ''
 # Share plugin configurations
 # https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Share/
-share:
-    type: sharethis
-    # URL to the ShareThis share plugin script
-    install_url: ''
+# share:
+#     type: sharethis
+#     # URL to the ShareThis share plugin script
+#     install_url: ''
 # Sidebar configurations.
 # Please be noted that a sidebar is only visible when it has at least one widget
 sidebar:
     # Left sidebar configurations
     left:
         # Whether the sidebar sticks to the top when page scrolls
-        sticky: false
+        sticky: true
     # Right sidebar configurations
     right:
         # Whether the sidebar sticks to the top when page scrolls
@@ -229,11 +230,11 @@ widgets:
         position: left
         type: profile
         # Author name
-        author: Your name
+        author: Quirrel
         # Author title
-        author_title: Your title
+        author_title: 星火燎原
         # Author's current location
-        location: Your location
+        location: 河南 郑州
         # URL or path to the avatar image
         avatar:
         # Whether show the rounded avatar image
@@ -241,24 +242,21 @@ widgets:
         # Email address for the Gravatar
         gravatar:
         # URL or path for the follow button
-        follow_link: https://github.com/ppoffice
+        follow_link: https://github.com/Quirrel-zh
         # Links to be shown on the bottom of the profile widget
         social_links:
             Github:
                 icon: fab fa-github
-                url: https://github.com/ppoffice
-            Facebook:
-                icon: fab fa-facebook
-                url: https://facebook.com
+                url: https://github.com/Quirrel-zh
+            # Facebook:
+            #     icon: fab fa-facebook
+            #     url: https://facebook.com
             Twitter:
                 icon: fab fa-twitter
                 url: https://twitter.com
-            Dribbble:
-                icon: fab fa-dribbble
-                url: https://dribbble.com
-            RSS:
-                icon: fas fa-rss
-                url: /
+            # Dribbble:
+            #     icon: fab fa-dribbble
+            #     url: https://dribbble.com
     # Table of contents widget configurations
     -
         # Where should the widget be placed, left sidebar or right sidebar
@@ -278,21 +276,21 @@ widgets:
         # Names and URLs of the sites
         links:
             Hexo: https://hexo.io
-            Bulma: https://bulma.io
+            码客说: https://www.psvmc.cn/
     # Categories widget configurations
     -
         # Where should the widget be placed, left sidebar or right sidebar
-        position: left
+        position: right
         type: categories
     # Recent posts widget configurations
     -
         # Where should the widget be placed, left sidebar or right sidebar
-        position: left
+        position: right
         type: recent_posts
     # Archives widget configurations
     -
         # Where should the widget be placed, left sidebar or right sidebar
-        position: left
+        position: right
         type: archives
     # Tags widget configurations
     -
@@ -315,14 +313,14 @@ widgets:
         # Feedburner ID
         feedburner_id: ''
     # Google AdSense unit configurations
-    -
-        # Where should the widget be placed, left sidebar or right sidebar
-        position: left
-        type: adsense
-        # AdSense client ID
-        client_id: ''
-        # AdSense AD unit ID
-        slot_id: ''
+    # -
+    #     # Where should the widget be placed, left sidebar or right sidebar
+    #     position: left
+    #     type: adsense
+    #     # AdSense client ID
+    #     client_id: ''
+    #     # AdSense AD unit ID
+    #     slot_id: ''
     # Follow.it email subscription widget configurations
     -
         # Where should the widget be placed, left sidebar or right sidebar
@@ -331,7 +329,7 @@ widgets:
         # Hint text under the email input
         description:
         # Subscription form action URL
-        action_url: ''
+        action_url: 'https://api.follow.it/subscription-form/OC82TmJiTGRITFVlSXp4eHBYSzNyU0VnZHcvc2ROdHJ0SmgwdlY2WFFFL2NrZExrS0ZEeXNxNk0zTFErTjhQWVJNOHpsVEpRcEU2dEdEM0RmUE9aTmIzeFdYRGMrcTNMUEFHQW5NR2FhdWVadVB0SmFZZm5SSTZ1THFTdVo5WlF8RFE3N0dNaCsyZjk5NXBSaTlHY0RTU2tRK0d6TWRkb1Nyak5Teng5ZUtqaz0=/8'
         # Feed claiming verification code
         verification_code: ''
 # Plugin configurations
