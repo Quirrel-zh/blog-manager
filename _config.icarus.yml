@@ -190,7 +190,7 @@ widgets:
     # Author name
     author: Quirrel
     # Author title
-    author_title: 星火燎原
+    author_title: 努力中
     # Author's current location
     location: 河南 郑州
     # URL or path to the avatar image
@@ -217,14 +217,14 @@ widgets:
       #     url: https://dribbble.com
   # Table of contents widget configurations
   - # Where should the widget be placed, left sidebar or right sidebar
-    position: left
+    position: right
     type: toc
     # Whether to show the index of each heading
     index: true
     # Whether to collapse sub-headings when they are out-of-view
     collapsed: true
     # Maximum level of headings to show (1-6)
-    depth: 3
+    depth: 5
   # Recommendation links widget configurations
   - # Where should the widget be placed, left sidebar or right sidebar
     position: left
@@ -345,7 +345,7 @@ plugins:
   # http://outdatedbrowser.com/
   outdated_browser: false
   # Enable PJAX
-  pjax: true
+  pjax: false
   # Show a progress bar at top of the page on page loading
   progressbar: true
   # Statcounter statistics

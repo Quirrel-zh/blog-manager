@@ -6,8 +6,9 @@ author: 小郑
 language: zh-CN
 timezone: 'Asia/Shanghai'
 url: https://www.f2iclo.cn
-permalink: ':year/:month/:day/:title/'
-permalink_defaults: null
+permalink: ':year/:month/:day/:name/'
+permalink_defaults: 
+  lang: en
 pretty_urls:
   trailing_index: true
   trailing_html: true
