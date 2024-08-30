@@ -1,5 +1,5 @@
 # Version of the configuration file
-version: 5.1.0
+version: 6.1.0
 # Icarus theme variant, can be "default" or "cyberpunk"
 variant: default
 # Path or URL to the website's logo
@@ -113,11 +113,11 @@ navbar:
   links:
     Download on GitHub:
       icon: fab fa-github
-      url: https://github.com/Quirrel-zh
+      url: https://github.com/ppoffice/hexo-theme-icarus
 # Page footer configurations
 footer:
   # Copyright text
-  copyright: <a href="https://beian.miit.gov.cn">222222豫ICP备2024085978号</a>
+  copyright: <a href="https://beian.miit.gov.cn">豫ICP备2024085978号</a>
   # Links to be shown on the right of the footer section
   links:
     Creative Commons:
@@ -166,7 +166,7 @@ search:
 comment:
   type: utterances
   repo: Quirrel-zh/blog-manager
-  issue_term: url # 必填项，与issue_number二选一填写
+  issue_term: title # 必填项，与issue_number二选一填写
   theme: github-light # 可选填
 
 # Sidebar configurations.
@@ -194,7 +194,7 @@ widgets:
     # Author's current location
     location: 河南 郑州
     # URL or path to the avatar image
-    avatar:
+    avatar: img/avatar.png
     # Whether show the rounded avatar image
     avatar_rounded: false
     # Email address for the Gravatar
@@ -206,12 +206,21 @@ widgets:
       Github:
         icon: fab fa-github
         url: https://github.com/Quirrel-zh
+      
+      Email:
+        icon: fas fa-envelope
+        url: mailto:becoolove@outlook.com
+
+      bilibili:
+        icon: fab fa-bilibili
+        url: https://space.bilibili.com/94076387
+
       # Facebook:
       #     icon: fab fa-facebook
       #     url: https://facebook.com
-      Twitter:
-        icon: fab fa-twitter
-        url: https://twitter.com
+      # Twitter:
+      #   icon: fab fa-twitter
+      #   url: https://twitter.com
       # Dribbble:
       #     icon: fab fa-dribbble
       #     url: https://dribbble.com

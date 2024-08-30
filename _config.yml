@@ -4,10 +4,10 @@ description: quirrel-Zh的博客
 keywords: 码记栈 小郑 quirrel-Zh quirrel
 author: 小郑
 language: zh-CN
-timezone: 'Asia/Shanghai'
+timezone: Asia/Shanghai
 url: https://www.f2iclo.cn
 permalink: ':year/:month/:day/:name/'
-permalink_defaults: 
+permalink_defaults:
   lang: en
 pretty_urls:
   trailing_index: true
