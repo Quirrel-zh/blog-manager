@@ -14,9 +14,9 @@ tags:
 给变量声明类型：
 
 ```typescript
-let a: string // 变量a只能存储字符串
-let b: number // 变量b只能存储数值
-let c: boolean // 变量c只能存储布尔值
+let a:string // 变量a只能存储字符串
+let b:number // 变量b只能存储数值
+let c:boolean // 变量c只能存储布尔值
 
 a = 'hello'
 a = 100 // 警告：不能将类型"number"分配给类型"string"
@@ -92,27 +92,27 @@ d = false  // 警告：不能将类型"boolean"分配给类型"number"
 
 ### 常用类型
 
-#### 字面量
+#### `字面量`
 
 ```typescript
-let a: '你好' // a的值只能是字符串'你好'
-let b: 100 // b的值只能是数字100	
+let a:'你好' // a的值只能是字符串'你好'
+let b:100 // b的值只能是数字100	
 
 a = 'hello' // 警告：不能将类型“'hello'”分配给类型“'你好'”
 b = 200  // 警告：不能将类型“200”分配给类型“100”
 
-let gender: '男'|'女' // 定义一个变量gender，值只能为字符串“男”或“女”
+let gender:'男'|'女' // 定义一个变量gender，值只能为字符串“男”或“女”
 gender = '男'
 gender = '未知' // 警告：不能将类型“'未知'”分配给类型“'男'|'女'”
 ```
 
-#### any
+#### `any`
 
 `any`的含义是：任何类型。 一旦将变量类型限制为`any`，那就意味着放弃了对该变量的类型检查。
 
 ```typescript
 // 明确表示a的类型是any —— 显式的any
-let a: any 
+let a:any 
 // 以下对a的赋值，均⽆警告
 a = 100
 a = '你好'
@@ -130,8 +130,174 @@ b = false
 >
 > ```typescript
 > let a
-> let x: string
+> let x:string
 > x = a // ⽆警告
 > ```
 
-#### unknown
+#### `unknown`
+
+`unknown`的含义是：未知类型
+
+> 1. `unknown`可以理解为一个类型安全的`any`
+> 2. `unknown`适用于：开始不知道数据的具体类型，后期才能确定数据的类型
+
+```typescript
+// 设置a的类型为unknown
+let a: unknown
+
+// 以下对a的赋值均无警告
+a = 100
+a = false
+a = '你好'
+
+// 设置x的数据类型为string
+let x:string
+x = a // 警告： 不能将类型'unknown'分配给类型'string'
+```
+
+如果想把a赋值给x， 可以用以下三种写法：
+
+```typescript
+// 设置a的类型为unknown
+let a:unknown
+a = 'hello'
+
+// 1、类型判断
+if (typeof a === 'string'){
+    x = a
+}
+
+// 2、断言
+x = a as string
+
+// 3、断言的另外一种写法
+x = <string>a
+```
+
+`any`后点任何的东西都不会报错，`unknown`则相反
+
+```typescript
+let str1:string = 'hello'
+str1.toUpperCase() // 无警告
+
+let str2:any = 'hello'
+str2.toUpperCase() // 无警告
+
+let str3:unknown = 'hello'
+str3.toUpperCase() // 警告："str3"的类型为未知
+
+// 使用断言强制指定str3的类型为string
+(str3 as string).toUpperCase() // 无警告
+```
+
+#### `never`
+
+`never`的含义是：任何值都不是，简言之就是不能有值，`undefined`、`null`、`''`、`0`都不行！
+
+ 1. 几乎不用`never`去限制变量，因为没有意义，例如：
+
+    ```typescript
+    // 指定a的类型为never，那就意味着a以后不能存任何的数据
+    let a:never
+    
+    // 以下对a的赋值都会有警告
+    a = 1
+    a = true
+    a = undefined
+    a = null
+    ```
+
+ 2. `never`一般是`TypeScript`主动推断出来的，例如：
+
+    ```typescript
+    // 指定a的类型为string
+    let a:string
+    // 给a设置一个值
+    a = 'hello'
+    
+    if(typeof a === 'string'){
+        a.toUpperCase()
+    } else{
+        console.log(a) // TypeScript会推断出此处的a是never，因为没有任何一个值符合此处的逻辑
+    }
+    ```
+
+    
+
+3. `never`也可以用于限制函数的返回值
+
+   ```typescript
+   // 限制demo函数不需要有任何返回值，任何值都不行，想undefined和null都不行
+   function demo():never{
+       throw new Error('程序异常退出')
+   }
+   ```
+
+   
+
+#### `void`
+
+`void`的含义是：`空`或者`undefined`，严格模式下不能加`null`赋值给`void`类型。
+
+```typescript
+let a:void = undefined
+
+// 严格模式下，该行会有警告：不能将类型“null”分配给类型“void”
+let b:void = null
+```
+
+`void`常用于限制函数返回值
+
+```typescript
+// 无警告
+function demo1():void{
+    
+}
+
+// 无警告
+function demo2():void{
+    return
+}
+
+// 无警告
+function demo3():void{
+    return undefined
+}
+
+// 警告：不能将类型“number”分配给类型“void”
+function demo4():void{
+    return 666
+}
+```
+
+#### `object`
+
+关于`Object`与`object`，直接说结论：在类型限制时，`Object`几乎不用，因为范围太大没有意义。
+
+1. `object`  的含义：任何【⾮原始值类型】，包括：对象、函数、数组等，限制的范围⽐较宽泛，⽤的少
+
+   ```typescript
+   let a:object // a的值可以是任何【⾮原始值类型】，包括：对象、函数、数组等
+   
+   // 以下代码，是将【⾮原始类型】赋给a，所以均⽆警告
+   a = {}
+   a = {name: '张三'}
+   a = [1, 3, 5, 7, 9]
+   a = function(){}
+    
+   // 以下代码，是将【原始类型】赋给a，有警告
+   a = null      // 警告：不能将类型“null”分配给类型“object”
+   a = 1         // 警告：不能将类型“number”分配给类型“object”
+   a = true      // 警告：不能将类型“boolean”分配给类型“object”
+   a = undefined // 警告：不能将类型“undefined”分配给类型“object”
+   a = '你好'    // 警告：不能将类型“string”分配给类型“object”
+   ```
+
+2. `Object`的含义：`Object`的实例对象，限制范围太大了，几乎不用
+
+   ```typescript
+   ```
+
+   
+
+   
