@@ -296,8 +296,276 @@ function demo4():void{
 2. `Object`的含义：`Object`的实例对象，限制范围太大了，几乎不用
 
    ```typescript
+   let a:Object //a的值必须是Object的实例对象，
+   
+   // 以下代码，均⽆警告，因为给a赋的值，都是Object的实例对象
+   a = {}
+   a = {name:'张三'}
+   a = [1,3,5,7,9]
+   a = function(){}
+   a = 1      // 1不是Object的实例对象，但其包装对象是Object的实例
+   a = true   // true不是Object的实例对象，但其包装对象是Object的实例
+   a = '你好' // “你好”不是Object的实例对象，但其包装对象是Object的实例
+   
+   // 以下代码均有警告
+   a = null       // 警告：不能将类型“null”分配给类型“Object”
+   a = undefined  // 警告：不能将类型“undefined”分配给类型“Object”
    ```
 
-   
+3. 实际开发中，限制一般对象，通常使用一下形式
 
+   ```typescript
+   // 限制person对象的具体内容，使用','分隔，问号代表可选属性
+   let person:{
+       name:string,
+       age?:number,
+   }
    
+   // 限制car对象的具体内容，使用';'分隔，必须有price和color属性，其他属性不去限制，有没有都行
+   let car:{
+       price: number;
+       color: string;
+       [k:string]:any
+   }
+   
+   // 限制student对象的具体内容，使用'回车'分隔。
+   let student:{
+       id:string,
+       grade:number,
+   }
+   
+   // 以下代码均无警告
+   person = {name: '张三', age: 18,}
+   person = {name: '李四'}
+   car = {price: 100, color: '红色'}
+   student = {id: '123', grade: 3}
+   ```
+
+4. 限制函数的参数、返回值，使⽤以下形式
+
+   ```typescript
+   let demo:(a:number, b:number) => number
+   
+   demo = function(x, y){
+       return x + y
+   }
+   ```
+
+5. 限制数组，使用以下形式
+
+   ```typescript
+   let arr1:string[] // 等价于 let arr1:Array<string>
+   let arr2:number[] //等价于 let arr2:Array<number>
+   
+   arr1 = ['a', 'b', 'c']
+   arr2 = [1, 3, 5, 7, 9]
+   ```
+
+#### `tuple`
+
+`tuple`就是一个长度固定的数组。
+
+```typescript
+let t:[string, number]
+
+t = ['hello', 123]
+
+// 警告：不能将类型“[string, number, boolean]”分配给类型“[string, number]”
+t = ['hello', 123, false]
+```
+
+#### `enum`
+
+`enum`是枚举
+
+{% codeblock "点击展开" lang:typescript >folded %}
+
+// 定义一个枚举
+enum Color {
+    Red,
+    Blue,
+    Blace,
+    Gold,
+}
+
+// 定义一个枚举，并指定其初始数值
+enum Color2{
+    Red = 6,
+    Blue,
+    Black,
+    Gold,
+}
+
+console.log(Color)
+/* 
+  {
+    0: 'Red', 
+    1: 'Blue', 
+    2: 'Black', 
+    3: 'Gold', 
+    Red: 0, 
+    Blue: 1, 
+    Black: 2, 
+    Gold: 3
+  }
+ */
+
+console.log(Color2)
+/* 
+  {
+    6: 'Red', 
+    7: 'Blue', 
+    8: 'Black', 
+    9: 'Gold', 
+    Red: 6, 
+    Blue: 7, 
+    Black: 8, 
+    Gold: 9
+  }
+ */
+
+// 定义一个phone变量，并对其设置限制
+let phone: {
+    name:string,
+    price:number,
+    color:Color,
+}
+
+phone = {
+    name: 'iPhone',
+    price: '6000'
+    color: Color.Red
+}
+
+if(phone.color === Color.Red){
+    console.log('手机是红色的')
+}
+
+{% endcodeblock %}
+
+### 自定义类型
+
+⾃定义类型，可以更灵活的限制类型
+
+```typescript
+// 性别的枚举
+enum Gender {
+ Male,
+ Female
+}
+
+// ⾃定义⼀个年级类型（⾼⼀、⾼⼆、⾼三）
+type Grade = 1 | 2 | 3
+
+// ⾃定义⼀个学⽣类型
+type Student = {
+ name: string,
+ age: number,
+ gender: Gender,
+ grade: Grade
+}
+
+// 定义两个学⽣变量：s1、s2
+let s1:Student
+let s2:Student
+s1 = {
+    name:'张三',
+    age:18,
+    gender:Gender.Male,
+    grade:1
+}
+s2 = {
+    name:'李四',
+    age:18,
+    gender:Gender.Female,
+    grade:2
+}
+```
+
+### 抽象类
+
+常规类：
+
+```typescript
+class Person {
+ name: string
+ age: number
+ constructor(name:string,age:number){
+ 	this.name = name
+ 	this.age = age
+ }
+}
+const p1 = new Person('张三',18)
+const p2 = new Person('李四',19)
+
+console.log(p1)
+console.log(p2)
+```
+
+继承：
+
+```typescript
+// Person类
+class Person {
+    name: string
+    age: number
+}
+
+// Teacher类继承Person
+class Teacher extends Person {
+    name: string
+    age: number
+}
+
+// Student类继承Person
+class Student extends Person {
+    name: string
+    age: number
+}
+
+// Person实例
+const p1 = new Person('周杰伦', 38)
+
+// Student实例
+const s1 = new Student('张同学', 18)
+const s2 = new Student('李同学', 20)
+
+// Teacher实例
+const t1 = new Teacher('刘⽼师', 40)
+const t2 = new Teacher('孙⽼师', 50)
+```
+
+抽象类：不能去实例化，但可以被别⼈继承，抽象类⾥有抽象⽅法
+
+```typescript
+// Person（抽象类）
+abstract class Person {
+    name: string
+    age: number
+}
+
+// Teacher类继承Person
+class Teacher extends Person {
+    name: string
+    age: number
+ 	// 构造器
+	constructor(name: string, age: number){
+ 		super(name, age)
+    }
+	// ⽅法
+	speak(){
+		 console.log('你好！我是⽼师:', this.name)
+    }
+}
+
+// Student类继承Person
+class Student extends Person {
+    name: string
+    age: number
+}
+
+// Person实例
+// const p1 = new Person('周杰伦',38) 
+// 由于Person是抽象类，所以此处不可以new Person的实例对象
+```
+
