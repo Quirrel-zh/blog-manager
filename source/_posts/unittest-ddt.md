@@ -6,12 +6,10 @@ tags:
     - web test 
     - unittest
     - ddt
-    - note
 toc: true
 categories: 
     - Python 
     - WebTesting
-
 ---
 
 ### 快速入门
