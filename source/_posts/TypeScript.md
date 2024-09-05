@@ -2,7 +2,13 @@
 title: TypeScript 极速梳理
 toc: true
 date: 2024-09-04 16:06:08
-tags:
+tags: 
+    - typescript 
+    - javascript
+    - web
+categories: 
+    - TypeScript
+
 ---
 `JavaScript`是非常灵活的一门编程语言，但是这种灵活是把双刃剑，一方面使得JavaScript蓬勃发展，无所不能；另一方面也使它的代码质量参差不齐，维护成本高，运行时错误多。
 
@@ -569,3 +575,254 @@ class Student extends Person {
 // 由于Person是抽象类，所以此处不可以new Person的实例对象
 ```
 
+### 接口
+
+接口梳理：
+
+ 1. 接口用于限制一个类中包含那些属性和方法：
+
+    ```typescript
+    // Person 接口
+    interface Person {
+        // 属性声明
+        name: string
+        age: number
+        // 方法声明
+        speak():void
+    }
+    
+    // Teacher实现Person接口
+    class Teacher implements Person {
+        name: string
+        age: number
+        // 构造器
+        constructor(name: string, age: number){
+            this.name = name
+            this.age = age
+        }
+        // 方法
+        speak(){
+            console.log('你好，我是：', this.name)
+        }
+    }
+    ```
+
+ 2. 接口是可以重复声明的：
+
+    ```typescript
+    // Person接口 
+    interface PersonInter {
+        // 属性声明
+        name: sting
+        age: number
+    }
+    
+    // Person接口
+    interface PersonInter {
+        // 方法声明
+        speak():void
+    }
+    
+    // Person类继承PersonInter
+    class Person implements PersonInter {
+        name: string
+        age: number
+        // 构造器
+        constructor(name: string, age: number){
+            this.name = name
+            this.age = age
+        }
+        // 方法
+        speak(){
+            console.log('你好，我是：', this.name)
+        }
+    }
+    ```
+
+ 3. "接口"与"自定义类型"的区别：
+
+    {% message color:info %}
+     接口可以：
+    
+     ​ 1. 当自定义类型去使用
+          2. 可以限制类的结构
+
+    自定义类型：
+    
+    ​	 1. 仅仅就是自定义类型
+
+    {% endmessage %}
+
+    ```typescript
+    // Person接口
+    interface Person{
+        // 应该具有的属性
+        name: string
+        age: number
+        // 应该具有的方法
+        speak():void
+    }
+    // Person类型
+    /* 
+      * type Person = {
+      *   name: string
+      *   age: number
+      * }
+    */
+       
+    // 接口当自定义类型去使用
+    let person:Person = {
+        name: '张三',
+        age: 18,
+        speak(){
+            console.log("你好")
+        }
+    }
+    ```
+
+    
+
+4. "接口"与"抽象类"的区别
+
+   {% message color:info %}
+   抽象类：
+
+   ​    1. 以有普通方法，也可以有抽象方法
+   ​        2. 用`extends`关键字去继承抽象类
+   接口中：
+
+   ​    1. 只能有抽象方法
+   ​	    2. 使用`implements`关键字去实现接口
+   {% endmessage %}
+
+   抽象类举例：
+
+   ```typescript
+   // 抽象类 ——— Person
+   abstract class Person{
+       // 属性
+       name: string
+       age: number
+       // 构造器
+       constructor(name:string, age:number){
+           this.name = name
+           this.age = age
+       }
+       // 抽象方法
+       abstract speak():void
+       // 普通方法
+       walk(){
+           console.log('我在走')
+       }
+   }
+   // Teacher类继承抽象类Person
+   class Teacher extends Person {
+       constructor(name:string, age:number){
+           super(name, age)
+       }
+       speak(){
+           console.log(`我是${this.name}`)
+       }
+   }
+   ```
+
+   接口举例：
+
+   ```typescript
+   // 接口 ——— Person, 只能包含抽象方法
+   interface Person {
+       // 属性，不写具体值
+       name: string
+       age: number
+       // 方法，不写具体实现
+       speak():void
+   }
+   // 创建Teacher类实现Person接口
+   class Teacher implements Person {
+       name: string
+       age: number
+       constructor(name:string, age:number){
+           this.name = name
+           this.age = age
+       }
+       speak(){
+           console.log('我在走')
+       }
+   }
+   ```
+
+
+### 属性修饰符
+
+|   修饰符    |   含义   |            解释            |
+| :---------: | :------: | :------------------------: |
+| `readonly`  | 只读属性 |        属性无法更改        |
+|  `public`   |  公开的  | 可以在类、子类和对象中修改 |
+| `protected` | 受保护的 |    可以在类、子类中修改    |
+|  `private`  |  私有的  |       可以在类中修改       |
+
+
+
+### 泛型
+
+定义一个函数或类时，有些情况下无法确定其中要使用的具体类型（返回值、参数、属性的类型不能确定），此时就需要泛型了
+
+举例：`<T>`就是泛型，（不一定非叫`<T>`），设置泛型之后即可在函数中使用`T`来表示该类型：
+
+```typescript
+function text<T>(arg: T): T{
+    return arg;
+}
+
+// 不指明类型，TS会自动推断出来
+test(10)
+
+// 指明具体的类型
+test<number>(10)
+```
+
+泛型还可以写多个：
+
+```typescript
+function test<T, K>(a: T, b: K) K{
+	return b
+}
+
+// 为多个泛型指定具体值
+test<number, string>(10, 'hello')
+```
+
+类中同样可以使用泛型
+
+```typescript
+class MyClass<T>{
+    prop: T
+    
+    constructor(prop: T){
+        this.prop = prop
+    }
+}
+```
+
+也可以对泛型的范围进行约束：
+
+```typescript
+interface Demo{
+    length: number
+}
+
+// 泛型T必须是MyInter的子类，即：必须拥有length属性
+function text<T extends Demo>(arg: T): number{
+    return arg.length
+}
+
+test(10) // 类型“number”的参数不能赋给类型“Demo”的参数
+test({name: '张三'}) // 类型“test({name: '张三'})”的参数不能赋给类型“Demo”的参数
+
+test('123')
+test({name:'张三', length: 10})
+```
+
+### 结语
+
+希望以上笔记能对你有帮助，当然如果你在使用TS时弄不清类型，又不想看到警告，完全可以使用`any`声明。这也是为什么`TypeScript`又被大家叫做`AnyScript`🤪
