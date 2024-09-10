@@ -10,7 +10,7 @@ date: 2024-09-02 09:53:01
 
 {% endraw %}
 
-![](../images/logo.png)
+![](../images/aboutPage/logo.png)
 
 ###### Hey！
 
