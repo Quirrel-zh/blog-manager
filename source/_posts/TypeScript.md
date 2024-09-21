@@ -7,6 +7,7 @@ tags:
     - javascript
     - web
 categories: 
+    - web
     - TypeScript
 
 ---
